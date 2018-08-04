@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMCL", "EMCL\EMCL.csproj", "{DE5674C4-5F28-4B4D-8FAE-18C29BAA8EDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE5674C4-5F28-4B4D-8FAE-18C29BAA8EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE5674C4-5F28-4B4D-8FAE-18C29BAA8EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE5674C4-5F28-4B4D-8FAE-18C29BAA8EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE5674C4-5F28-4B4D-8FAE-18C29BAA8EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F27162A-38AE-452F-8CE1-1B657529F33E}
+	EndGlobalSection
+EndGlobal
