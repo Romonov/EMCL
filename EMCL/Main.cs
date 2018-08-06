@@ -14,7 +14,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.1.0";
+        public const string Version = "0.3.0";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
@@ -109,14 +109,9 @@ namespace EMCL
                 {
                     tabMain.SelectedIndex = 2;
                 }
-                /*
-                MessageBox.Show(text:ex.ToString(), caption: "EMCL Fatal Error", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error);
-                Environment.Exit(1);
-                */
             }
 
             // Get Notice 
-
 
             // Status
             textStatus.Text = "就绪";
@@ -169,7 +164,8 @@ namespace EMCL
         private void buttonLaunch_Click(object sender, EventArgs e)
         {
             textStatus.Text = "正在准备启动游戏";
-            //Launcher.Launch(loginType, );
+            //Launcher.Launch(textBoxSetMemory.Text, textBoxSetJavaPath.Text, textBoxUsername.Text, listVersions.SelectedItem.ToString(), 0);
+            Launcher.Launch(LoginType.Offline, listVersions.SelectedItem.ToString(), int.Parse(textBoxSetMemory.Text), textBoxUsername.Text, textBoxJVMAdditionalParameter.Text, "", textBoxStartDirectConnectionServer.Text, int.Parse(textBoxGameWindowWidth.Text), int.Parse(textBoxGameWindowHeight.Text), textBoxSetJavaPath.Text, false, false, false, false);
         }
 
         private void checkBoxSetJavaPath_CheckedChanged(object sender, EventArgs e)

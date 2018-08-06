@@ -52,16 +52,11 @@
     <ApplicationIcon>MinecraftLauncher.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BottleJson">
-      <HintPath>..\JL2\BottleJson\bin\Release\BottleJson.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="RUL">
-      <HintPath>..\..\RUL\RUL\bin\Release\RUL.dll</HintPath>
+      <HintPath>..\..\..\RUL\RUL\bin\Debug\RUL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

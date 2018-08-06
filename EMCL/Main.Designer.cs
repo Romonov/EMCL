@@ -51,6 +51,7 @@
             this.textVersionChoose = new System.Windows.Forms.Label();
             this.listVersions = new System.Windows.Forms.ListBox();
             this.groupBoxMemory = new System.Windows.Forms.GroupBox();
+            this.textSetMemoryMB = new System.Windows.Forms.Label();
             this.textBoxSetMemory = new System.Windows.Forms.TextBox();
             this.textSetMemory = new System.Windows.Forms.Label();
             this.textRecommendMemory = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.textRecommendMemoryActive = new System.Windows.Forms.Label();
             this.groupBoxLogin = new System.Windows.Forms.GroupBox();
             this.textMimirNotice = new System.Windows.Forms.Label();
+            this.buttonLogin = new System.Windows.Forms.Button();
             this.textBoxYggdrasilServer = new System.Windows.Forms.TextBox();
             this.textYggdrasilServer = new System.Windows.Forms.Label();
             this.textPlayerRole = new System.Windows.Forms.Label();
@@ -163,8 +165,6 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.textSetMemoryMB = new System.Windows.Forms.Label();
-            this.buttonLogin = new System.Windows.Forms.Button();
             this.tabMain.SuspendLayout();
             this.pageMainLaunch.SuspendLayout();
             this.groupBoxCommonFunction.SuspendLayout();
@@ -422,6 +422,15 @@
             this.groupBoxMemory.TabStop = false;
             this.groupBoxMemory.Text = "内存设置";
             // 
+            // textSetMemoryMB
+            // 
+            this.textSetMemoryMB.AutoSize = true;
+            this.textSetMemoryMB.Location = new System.Drawing.Point(156, 77);
+            this.textSetMemoryMB.Name = "textSetMemoryMB";
+            this.textSetMemoryMB.Size = new System.Drawing.Size(17, 12);
+            this.textSetMemoryMB.TabIndex = 10;
+            this.textSetMemoryMB.Text = "MB";
+            // 
             // textBoxSetMemory
             // 
             this.textBoxSetMemory.Location = new System.Drawing.Point(98, 74);
@@ -523,6 +532,16 @@
             this.textMimirNotice.Size = new System.Drawing.Size(167, 12);
             this.textMimirNotice.TabIndex = 27;
             this.textMimirNotice.Text = "这里是Mimir验证服务器的公告";
+            // 
+            // buttonLogin
+            // 
+            this.buttonLogin.Enabled = false;
+            this.buttonLogin.Location = new System.Drawing.Point(178, 152);
+            this.buttonLogin.Name = "buttonLogin";
+            this.buttonLogin.Size = new System.Drawing.Size(43, 23);
+            this.buttonLogin.TabIndex = 27;
+            this.buttonLogin.Text = "登录";
+            this.buttonLogin.UseVisualStyleBackColor = true;
             // 
             // textBoxYggdrasilServer
             // 
@@ -818,6 +837,7 @@
             this.textBoxGameWindowHeight.Name = "textBoxGameWindowHeight";
             this.textBoxGameWindowHeight.Size = new System.Drawing.Size(50, 21);
             this.textBoxGameWindowHeight.TabIndex = 10;
+            this.textBoxGameWindowHeight.Text = "480";
             // 
             // textBoxGameWindowWidth
             // 
@@ -825,6 +845,7 @@
             this.textBoxGameWindowWidth.Name = "textBoxGameWindowWidth";
             this.textBoxGameWindowWidth.Size = new System.Drawing.Size(50, 21);
             this.textBoxGameWindowWidth.TabIndex = 9;
+            this.textBoxGameWindowWidth.Text = "854";
             // 
             // comboBoxJavaSelect
             // 
@@ -971,6 +992,8 @@
             this.textBoxJVMAdditionalParameter.Name = "textBoxJVMAdditionalParameter";
             this.textBoxJVMAdditionalParameter.Size = new System.Drawing.Size(423, 21);
             this.textBoxJVMAdditionalParameter.TabIndex = 7;
+            this.textBoxJVMAdditionalParameter.Text = "-Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true" +
+    "";
             // 
             // textJVMAdditionalParameter
             // 
@@ -1484,25 +1507,6 @@
             this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             this.toolStripProgressBar.Visible = false;
             // 
-            // textSetMemoryMB
-            // 
-            this.textSetMemoryMB.AutoSize = true;
-            this.textSetMemoryMB.Location = new System.Drawing.Point(156, 77);
-            this.textSetMemoryMB.Name = "textSetMemoryMB";
-            this.textSetMemoryMB.Size = new System.Drawing.Size(17, 12);
-            this.textSetMemoryMB.TabIndex = 10;
-            this.textSetMemoryMB.Text = "MB";
-            // 
-            // buttonLogin
-            // 
-            this.buttonLogin.Enabled = false;
-            this.buttonLogin.Location = new System.Drawing.Point(178, 152);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(43, 23);
-            this.buttonLogin.TabIndex = 27;
-            this.buttonLogin.Text = "登录";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1582,7 +1586,6 @@
         private System.Windows.Forms.Label textRemainMemory;
         private System.Windows.Forms.Label textRecommendMemory;
         private System.Windows.Forms.GroupBox groupBoxMemory;
-        private System.Windows.Forms.TextBox textBoxSetMemory;
         private System.Windows.Forms.Label textNotificAPI;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
         private System.Windows.Forms.GroupBox groupBoxSystemInfo;
@@ -1692,6 +1695,7 @@
         private System.Windows.Forms.TreeView treeViewOptifineMinecraftVersion;
         private System.Windows.Forms.Label textSetMemoryMB;
         private System.Windows.Forms.Button buttonLogin;
+        private System.Windows.Forms.TextBox textBoxSetMemory;
     }
 }
 
