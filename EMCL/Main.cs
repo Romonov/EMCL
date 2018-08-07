@@ -163,8 +163,8 @@ namespace EMCL
 
         private void buttonLaunch_Click(object sender, EventArgs e)
         {
+
             textStatus.Text = "正在准备启动游戏";
-            //Launcher.Launch(textBoxSetMemory.Text, textBoxSetJavaPath.Text, textBoxUsername.Text, listVersions.SelectedItem.ToString(), 0);
             Launcher.Launch(LoginType.Offline, listVersions.SelectedItem.ToString(), int.Parse(textBoxSetMemory.Text), textBoxUsername.Text, textBoxJVMAdditionalParameter.Text, "", textBoxStartDirectConnectionServer.Text, int.Parse(textBoxGameWindowWidth.Text), int.Parse(textBoxGameWindowHeight.Text), textBoxSetJavaPath.Text, false, false, false, false);
         }
 
