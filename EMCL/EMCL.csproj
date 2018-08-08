@@ -81,7 +81,7 @@
     </Compile>
     <Compile Include="Java.cs" />
     <Compile Include="Launcher.cs" />
-    <Compile Include="LauncherLegecy.cs" />
+    <Compile Include="LauncherLegacy.cs" />
     <Compile Include="LauncherNew.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

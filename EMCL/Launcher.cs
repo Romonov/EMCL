@@ -71,22 +71,8 @@ namespace EMCL
 
             RunCommand += $" -Djava.library.path={NativesPath}";
 
-            string cp = "";
-            for(int i = 0; i < JsonMain.libraries.Length; i++)
-            {
-                string[] tmp = JsonMain.libraries[i].name.Split(':');
-                string[] tmp2 = tmp[0].Split('.');
-                string path = $@"{Main.GamePath}\libraries";
-                for(int j = 0; j < tmp2.Length; j++)
-                {
-                    path += $@"\{tmp2[j]}";
-;               }
-                path += $@"\{tmp[1]}";
-                path += $@"\{tmp[2]}";
-                path += $@"\{tmp[1]}-{tmp[2]}.jar;";
-                cp += path;
-            }
-
+            string cp = GetCP(JsonMain);
+            
             if (JsonMain.inheritsFrom != null)
             {
                 IsInheritsed = true;
@@ -95,22 +81,7 @@ namespace EMCL
                 JsonInherits = File.ReadAllText(JsonPathInherits);
                 MainJson JsonInheritsMain = JsonConvert.DeserializeObject<MainJson>(JsonInherits);
 
-                for (int i = 0; i < JsonInheritsMain.libraries.Length; i++)
-                {
-                    string[] tmp = JsonInheritsMain.libraries[i].name.Split(':');
-                    string[] tmp2 = tmp[0].Split('.');
-                    string path = $@"{Main.GamePath}\libraries";
-                    for (int j = 0; j < tmp2.Length; j++)
-                    {
-                        path += $@"\{tmp2[j]}";
-                        ;
-                    }
-                    path += $@"\{tmp[1]}";
-                    path += $@"\{tmp[2]}";
-                    path += $@"\{tmp[1]}-{tmp[2]}.jar;";
-                    cp += path;
-                }
-
+                cp += GetCP(JsonInheritsMain);
             }
 
             RunCommand += $" -cp {cp}";
@@ -129,13 +100,13 @@ namespace EMCL
 
             RunCommand += $" {MainClass} {Arguments}";
 
-            MessageBox.Show(RunCommand);
+            //MessageBox.Show(RunCommand);
 
-            Process mjp = new Process();//运行部分
-            ProcessStartInfo psi = new ProcessStartInfo(JavaPath, RunCommand);//运行部分
-            psi.UseShellExecute = false;//运行部分
-            mjp.StartInfo = psi;//运行部分
-            mjp.Start();//运行部分
+            Process StartMinecraft = new Process();
+            ProcessStartInfo StartMinecraftInfo = new ProcessStartInfo(JavaPath, RunCommand);
+            StartMinecraftInfo.UseShellExecute = false;
+            StartMinecraft.StartInfo = StartMinecraftInfo;
+            StartMinecraft.Start();
 
         }
 
@@ -159,6 +130,26 @@ namespace EMCL
             sz.WaitForExit();//等待退出
             File.Delete(Application.StartupPath + "\\7z.exe");//删除7z.exe
             File.Delete(Application.StartupPath + "\\7z.dll");//删除7z.dll
+        }
+
+        private static string GetCP(MainJson Json)
+        {
+            string cp = "";
+            for (int i = 0; i < Json.libraries.Length; i++)
+            {
+                string[] tmp = Json.libraries[i].name.Split(':');
+                string[] tmp2 = tmp[0].Split('.');
+                string path = $@"{Main.GamePath}\libraries";
+                for (int j = 0; j < tmp2.Length; j++)
+                {
+                    path += $@"\{tmp2[j]}";
+                }
+                path += $@"\{tmp[1]}";
+                path += $@"\{tmp[2]}";
+                path += $@"\{tmp[1]}-{tmp[2]}.jar;";
+                cp += path;
+            }
+            return cp;
         }
 
         private static string GetLaunchType(string Version)

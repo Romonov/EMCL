@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EMCL
 {
-    class LauncherLegecy
+    class LauncherLegacy
     {
     }
 }
