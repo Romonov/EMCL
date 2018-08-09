@@ -347,6 +347,7 @@
             this.textJavaVersion.Size = new System.Drawing.Size(65, 12);
             this.textJavaVersion.TabIndex = 3;
             this.textJavaVersion.Text = "Java版本：";
+            this.toolTipMain.SetToolTip(this.textJavaVersion, "推荐使用Java8。");
             // 
             // textGPUModel
             // 
@@ -403,6 +404,7 @@
             this.listVersions.Name = "listVersions";
             this.listVersions.Size = new System.Drawing.Size(197, 292);
             this.listVersions.TabIndex = 1;
+            this.toolTipMain.SetToolTip(this.listVersions, "请选择想要启动的Minecraft版本。");
             // 
             // groupBoxMemory
             // 
@@ -457,6 +459,7 @@
             this.textRecommendMemory.Size = new System.Drawing.Size(65, 12);
             this.textRecommendMemory.TabIndex = 4;
             this.textRecommendMemory.Text = "推荐大小：";
+            this.toolTipMain.SetToolTip(this.textRecommendMemory, "推荐大小通常是内存总大小的四分之一。");
             // 
             // textTotalMemoryActive
             // 
@@ -1494,6 +1497,7 @@
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip";
+            this.toolTipMain.SetToolTip(this.statusStrip, "启动器状态栏");
             // 
             // textStatus
             // 
