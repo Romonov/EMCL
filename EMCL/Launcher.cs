@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ICSharpCode.SharpZipLib.Zip;
 using Newtonsoft.Json;
 
 namespace EMCL
@@ -52,12 +53,23 @@ namespace EMCL
 
             string AssetsDir = $@"{Main.GamePath}\assets";
             string AssetsIndex = JsonMain.assetIndex.id;
-            
+
             ArrayList LibraryPaths = new ArrayList();
-            
+
             if (!Directory.Exists(NativesPath))
             {
                 Directory.CreateDirectory(NativesPath);
+            }
+            if (Directory.GetFiles(NativesPath).Length == 0)
+            {
+                try
+                {
+                    DecompressNatives(JsonMain, NativesPath);
+                }
+                catch
+                {
+
+                }
             }
 
             string MainClass = JsonMain.mainClass;
@@ -72,7 +84,7 @@ namespace EMCL
             RunCommand += $" -Djava.library.path={NativesPath}";
 
             string cp = GetCP(JsonMain);
-            
+
             if (JsonMain.inheritsFrom != null)
             {
                 IsInheritsed = true;
@@ -100,6 +112,15 @@ namespace EMCL
 
             RunCommand += $" {MainClass} {Arguments}";
 
+            if (LnhFullSrn)
+            {
+                RunCommand += $" --height {Height} --width {Width} --fullscreen";
+            }
+            else
+            {
+                RunCommand += $" --height {Height} --width {Width}";
+            }
+
             //MessageBox.Show(RunCommand);
 
             Process StartMinecraft = new Process();
@@ -108,28 +129,6 @@ namespace EMCL
             StartMinecraft.StartInfo = StartMinecraftInfo;
             StartMinecraft.Start();
 
-        }
-
-        public static void decompress(String inputFileName, String outputDirName)
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();//释放7z.exe和7z.dll部分
-            Stream stream = assembly.GetManifestResourceStream("EMCL.7z.exe");//释放7z.exe和7z.dll部分
-            byte[] bytes = new byte[stream.Length];//释放7z.exe和7z.dll部分
-            stream.Read(bytes, 0, int.Parse(stream.Length.ToString()));//释放7z.exe和7z.dll部分
-            File.WriteAllBytes(Application.StartupPath + "\\7z.exe", bytes);//释放7z.exe和7z.dll部分
-            assembly = Assembly.GetExecutingAssembly();//释放7z.exe和7z.dll部分
-            stream = assembly.GetManifestResourceStream("EMCL.7z.dll");//释放7z.exe和7z.dll部分
-            bytes = new byte[stream.Length];//释放7z.exe和7z.dll部分
-            stream.Read(bytes, 0, int.Parse(stream.Length.ToString()));//释放7z.exe和7z.dll部分
-            File.WriteAllBytes(Application.StartupPath + "\\7z.dll", bytes); //释放7z.exe和7z.dll部分
-            Process sz = new Process();//运行7z.exe解压部分
-            ProcessStartInfo psi = new ProcessStartInfo(Application.StartupPath + "\\7z.exe", "x \"" + inputFileName + "\" -o\"" + outputDirName + "\" -y");//运行7z.exe解压部分
-            psi.UseShellExecute = false;//运行7z.exe解压部分
-            sz.StartInfo = psi;//运行7z.exe解压部分
-            sz.Start();//运行7z.exe解压部分
-            sz.WaitForExit();//等待退出
-            File.Delete(Application.StartupPath + "\\7z.exe");//删除7z.exe
-            File.Delete(Application.StartupPath + "\\7z.dll");//删除7z.dll
         }
 
         private static string GetCP(MainJson Json)
@@ -152,10 +151,108 @@ namespace EMCL
             return cp;
         }
 
+        private static void DecompressNatives(MainJson Json, string path)
+        {
+            string name = "";
+            for (int i = 0; i < Json.libraries.Length; i++)
+            {
+                if(Json.libraries[i].extract != null)
+                {
+                    string[] tmp = Json.libraries[i].name.Split(':');
+                    string[] tmp2 = tmp[0].Split('.');
+                    name = $@"{Main.GamePath}\libraries";
+                    for (int j = 0; j < tmp2.Length; j++)
+                    {
+                        name += $@"\{tmp2[j]}";
+                    }
+                    name += $@"\{tmp[1]}";
+                    name += $@"\{tmp[2]}";
+                    name += $@"\{tmp[1]}-{tmp[2]}-natives-windows.jar";
+
+                    (new FastZip()).ExtractZip(name.Replace("${arch}", "32"), path, "");
+                }
+            }
+        }
+
         private static string GetLaunchType(string Version)
         {
             // Todo
             return "";
+        }
+
+        /// <summary>
+        /// 启动主方法
+        /// </summary>
+        /// <param name="MaxMem">最大内存</param>
+        /// <param name="JavaPath">Javaw.exe路径</param>
+        /// <param name="UserName">用户名</param>
+        /// <param name="VerName">版本名</param>
+        public void Launch(string MaxMem, string JavaPath, string UserName, string VerName)
+        {
+            string rtxt = "";//声明
+            int tmp = 0;
+            rtxt = File.ReadAllText(Application.StartupPath + "\\.minecraft\\versions\\" + VerName + "\\" + VerName + ".json").Replace(" ", "").Replace("\n", "");//读取内容
+            tmp = rtxt.IndexOf("mainClass") + "mainClass".Length + 3;//取名称起始位置并赋值到tmp
+            String mainClass = rtxt.Substring(tmp, rtxt.IndexOf("\"", tmp) - tmp);//截取值
+            tmp = rtxt.IndexOf("minecraftArguments") + "minecraftArguments".Length + 3;//json读取部分，同上
+            String minecraftArguments = rtxt.Substring(tmp, rtxt.IndexOf("\"", tmp) - tmp).Replace("${", " ${").Replace("}", "} ");//json读取部分，同上
+            tmp = rtxt.IndexOf("libraries") + "libraries".Length + 3;//json读取部分，同上
+            String libraries = rtxt.Substring(tmp, rtxt.LastIndexOf("]") - tmp);//json读取部分，同上
+            String natives = Application.StartupPath + "\\.minecraft\\versions\\" + VerName + "\\" + VerName + "-natives";//设置natives路径
+            if (!Directory.Exists(natives))//目录不存在
+            {
+                Directory.CreateDirectory(natives);//创建
+            }
+            String[] libs = libraries.Replace("},{", "^").Split("^".ToCharArray());//将},{替换为^然后以^进行分割
+            String libp = "";//声明libp
+            for (int i = 1; i < libs.Length; i++)//为数组内容循环，也可以考虑foreach
+            {
+                if (libs[i].IndexOf("name") == -1)//如果没有name值
+                {
+                    continue;//跳过
+                }
+                tmp = libs[i].IndexOf("name") + "name".Length + 3;//json读取部分，同上
+                String libn = libs[i].Substring(tmp, libs[i].IndexOf("\"", tmp) - tmp);//json读取部分，同上
+                if (libn.IndexOf(":") == -1)//如果name的值不合法
+                {
+                    continue;//跳过
+                }
+                String[] tlib = new String[] { libn.Substring(0, libn.IndexOf(":")).Replace(":", ""), libn.Substring(libn.IndexOf(":") + 1, libn.IndexOf(":", libn.IndexOf(":") + 1) - libn.IndexOf(":")).Replace(":", ""), libn.Substring(libn.IndexOf(":", libn.IndexOf(":") + 1)).Replace(":", "") };//将读取的name值转成路径
+                String tpath = Application.StartupPath + "\\.minecraft\\libraries\\" + tlib[0].Replace(".", "\\") + "\\" + tlib[1] + "\\" + tlib[2] + "\\" + tlib[1] + "-" + tlib[2] + ".jar";//同上
+                if (libs[i].IndexOf("natives") != -1 && libs[i].IndexOf("windows") != -1)//如果有natives指定
+                {
+                    tmp = libs[i].IndexOf("windows") + "windows".Length + 3;//json读取部分，同上
+                    tpath = tpath.Replace(".jar", "") + "-" + libs[i].Substring(tmp, libs[i].IndexOf("\"", tmp) - tmp) + ".jar";//json读取部分，同上
+                }
+                if (File.Exists(tpath))//检查文件是否存在
+                {
+                    libp = libp + tpath + ";";//存在就加录
+                }
+                if (libs[i].IndexOf("extract") != -1)//如果要提取natives
+                {
+                    //decompress(tpath, natives);//提取
+                }
+            }
+            libp = libp + Application.StartupPath + "\\.minecraft\\versions\\" + VerName + "\\" + VerName + ".jar";//整合字符串
+            String assets = Application.StartupPath + "\\.minecraft\\assets";//设置绝对路径
+            String gameDir = Application.StartupPath + "\\.minecraft";//设置游戏路径
+            if (Application.StartupPath.IndexOf(" ") != -1)//如果路径有空格
+            {
+                natives = "\"" + natives + "\"";//加上引号
+                libp = "\"" + libp + "\"";//加上引号
+                assets = "\"" + assets + "\"";//加上引号
+                gameDir = "\"" + gameDir + "\"";//加上引号
+            }
+            minecraftArguments = minecraftArguments.Replace("${auth_player_name}", UserName).Replace("${version_name}", "JuicyLauncher_1.0").Replace("${game_directory}", gameDir).Replace("${game_assets}", assets);//读取额外参数
+                                                                                                                                                                                                                     //启动参数拼接
+            String RunComm = "";//声明RunComm
+            RunComm = "-Xmx" + MaxMem + "m -Djava.library.path=" + natives + " -Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true -cp " + libp + " " + mainClass + " " + minecraftArguments;//拼接参数
+            Process mjp = new Process();//运行部分
+            ProcessStartInfo psi = new ProcessStartInfo(JavaPath, RunComm);//运行部分
+            psi.UseShellExecute = false;//运行部分
+            mjp.StartInfo = psi;//运行部分
+            mjp.Start();//运行部分
+            Application.Exit();//退出
         }
     }
 
@@ -221,7 +318,7 @@ namespace EMCL
     }
     struct libraries
     {
-        public librariesExtract extract;
+        public librariesExtract? extract;
         public string name;
         public string url;
         public librariesNatives natives;

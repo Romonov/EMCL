@@ -14,7 +14,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.1";
+        public const string Version = "0.3.2";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
@@ -168,13 +168,30 @@ namespace EMCL
                 textStatus.Text = "请选择要启动的版本";
                 return;
             }
+
             if(textBoxUsername.Text == "")
             {
                 textStatus.Text = "请输入玩家名";
                 return;
             }
             textStatus.Text = "正在准备启动游戏";
-            Launcher.Launch(LoginType.Offline, listVersions.SelectedItem.ToString(), int.Parse(textBoxSetMemory.Text), textBoxUsername.Text, textBoxJVMAdditionalParameter.Text, "", textBoxStartDirectConnectionServer.Text, int.Parse(textBoxGameWindowWidth.Text), int.Parse(textBoxGameWindowHeight.Text), textBoxSetJavaPath.Text, false, false, false, false);
+
+            Launcher.Launch(
+                LoginType.Offline, listVersions.SelectedItem.ToString(), 
+                int.Parse(textBoxSetMemory.Text), 
+                textBoxUsername.Text, 
+                textBoxJVMAdditionalParameter.Text, 
+                textBoxMinecraftAdditionalParameter.Text, 
+                textBoxStartDirectConnectionServer.Text, 
+                int.Parse(textBoxGameWindowWidth.Text), 
+                int.Parse(textBoxGameWindowHeight.Text), 
+                textBoxSetJavaPath.Text, 
+                !checkBoxDisableDefaultPublicAssets.Checked, 
+                checkBoxDisableDefaultJVMParameter.Checked, 
+                checkBoxVersionIsolate.Checked, 
+                checkBoxFullScreen.Checked
+            );
+
             textStatus.Text = "就绪";
         }
 

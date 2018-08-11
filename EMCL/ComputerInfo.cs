@@ -18,7 +18,7 @@ namespace EMCL
         /// <returns>操作系统版本</returns>
         public static string GetOSVersion()
         {
-            string str = "Error";
+            string str = "";
             try
             {
                 string hdId = string.Empty;
@@ -30,7 +30,10 @@ namespace EMCL
                     break;
                 }
             }
-            catch { }
+            catch
+            {
+                return "Error";
+            }
             return str;
         }
 
@@ -170,11 +173,61 @@ namespace EMCL
             }
             catch
             {
-
+                return "Error";
             }
             return result;
 
         }
+
+
+        /// <summary>
+        /// 获取分辨率宽
+        /// </summary>
+        public static string GetWidth()
+        {
+            string result = "";
+            try
+            {
+                string hdId = string.Empty;
+                ManagementClass hardDisk = new ManagementClass(WindowsAPIType.Win32_DesktopMonitor.ToString());
+                ManagementObjectCollection hardDiskC = hardDisk.GetInstances();
+                foreach (ManagementObject m in hardDiskC)
+                {
+                    result = $"{m[WindowsAPIKeys.ScreenWidth.ToString()].ToString()}*{m[WindowsAPIKeys.ScreenHeight.ToString()].ToString()}";
+                    break;
+                }
+            }
+            catch
+            {
+                return "Error";
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 获取分辨率高
+        /// </summary>
+        public static string GetHeight()
+        {
+            string result = "";
+            try
+            {
+                string hdId = string.Empty;
+                ManagementClass hardDisk = new ManagementClass(WindowsAPIType.Win32_DesktopMonitor.ToString());
+                ManagementObjectCollection hardDiskC = hardDisk.GetInstances();
+                foreach (ManagementObject m in hardDiskC)
+                {
+                    result = m[WindowsAPIKeys.ScreenHeight.ToString()].ToString();
+                    break;
+                }
+            }
+            catch
+            {
+                return "Error";
+            }
+            return result;
+        }
+        
     }
     #region WindowsAPI枚举
     /// <summary>
@@ -367,31 +420,6 @@ namespace EMCL
             return str;
         }
 
-        /// <summary>
-        /// 获取分辨率
-        /// </summary>
-        public string GetFenbianlv()
-        {
-            string result = "1920*1080";
-            try
-            {
-                string hdId = string.Empty;
-                ManagementClass hardDisk = new ManagementClass(WindowsAPIType.Win32_DesktopMonitor.ToString());
-                ManagementObjectCollection hardDiskC = hardDisk.GetInstances();
-                foreach (ManagementObject m in hardDiskC)
-                {
-                    result = m[WindowsAPIKeys.ScreenWidth.ToString()].ToString() + "*" +
-m[WindowsAPIKeys.ScreenHeight.ToString()].ToString();
-                    break;
-                }
-            }
-            catch
-            {
-
-            }
-            return result;
-        }
-        
         /// <summary>  
         /// 将字节转换为GB
         /// </summary>  
