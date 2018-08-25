@@ -275,6 +275,7 @@
             this.buttonForceReleaseMemory.TabIndex = 5;
             this.buttonForceReleaseMemory.Text = "强制释放内存";
             this.buttonForceReleaseMemory.UseVisualStyleBackColor = true;
+            this.buttonForceReleaseMemory.Click += new System.EventHandler(this.buttonForceReleaseMemory_Click);
             // 
             // checkBoxFullScreen
             // 

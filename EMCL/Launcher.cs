@@ -66,9 +66,9 @@ namespace EMCL
                 {
                     DecompressNatives(JsonMain, NativesPath);
                 }
-                catch
+                catch (Exception e)
                 {
-
+                    MessageBox.Show(e.Message, "EMCL 启动错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -99,16 +99,24 @@ namespace EMCL
             RunCommand += $" -cp {cp}";
             RunCommand += $@"{Main.GamePath}\versions\{JsonMain.id}\{JsonMain.id}.jar";
 
-            string Arguments = JsonMain.minecraftArguments
-                .Replace("${auth_player_name}", $"{Username}")
-                .Replace("${version_name}", $"\"EMCL-{Main.Version}\"")
-                .Replace("${version_type}", $"\"EMCL-{Main.Version}\"")
-                .Replace("${game_directory}", $"{Main.GamePath}")
-                .Replace("${assets_root}", $"{AssetsDir}")
-                .Replace("${assets_index_name}", $"{AssetsIndex}")
-                .Replace("${user_type}", $"Legacy")
-                .Replace("${auth_uuid}", $"88888888888888888888888888888888")
-                .Replace("${auth_access_token}", $"88888888888888888888888888888888");
+            string Arguments = "";
+            if(JsonMain.minecraftArguments != null)
+            {
+                Arguments = JsonMain.minecraftArguments
+                    .Replace("${auth_player_name}", $"{Username}")
+                    .Replace("${version_name}", $"\"EMCL-{Main.Version}\"")
+                    .Replace("${version_type}", $"\"EMCL-{Main.Version}\"")
+                    .Replace("${game_directory}", $"{Main.GamePath}")
+                    .Replace("${assets_root}", $"{AssetsDir}")
+                    .Replace("${assets_index_name}", $"{AssetsIndex}")
+                    .Replace("${user_type}", $"Legacy")
+                    .Replace("${auth_uuid}", $"88888888888888888888888888888888")
+                    .Replace("${auth_access_token}", $"88888888888888888888888888888888");
+            }
+            else
+            {
+                Arguments = $"--username {Username} --version \"EMCL-{Main.Version}\" --gameDir {Main.GamePath} --assetsDir {AssetsDir} --assetIndex {AssetsIndex} --uuid 88888888888888888888888888888888 --accessToken 88888888888888888888888888888888 --userType Legacy --versionType \"EMCL-{Main.Version}\"";
+            }
 
             RunCommand += $" {MainClass} {Arguments}";
 

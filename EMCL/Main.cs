@@ -259,5 +259,10 @@ namespace EMCL
                 textBoxSetMemory.Text = (int.Parse(ComputerInfo.GetMemoryAvailable())).ToString();
             }
         }
+
+        private void buttonForceReleaseMemory_Click(object sender, EventArgs e)
+        {
+            textStatus.Text = "已完成";
+        }
     }
 }
