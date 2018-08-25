@@ -14,7 +14,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.2";
+        public const string Version = "0.3.3";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
