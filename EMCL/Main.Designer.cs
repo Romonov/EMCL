@@ -206,6 +206,7 @@
             this.tabMain.ShowToolTips = true;
             this.tabMain.Size = new System.Drawing.Size(584, 339);
             this.tabMain.TabIndex = 0;
+            this.toolTipMain.SetToolTip(this.tabMain, "这里是选项卡，里面的所有功能浅墨都会在江来实装。");
             // 
             // pageMainLaunch
             // 
@@ -237,6 +238,7 @@
             this.groupBoxCommonFunction.TabIndex = 8;
             this.groupBoxCommonFunction.TabStop = false;
             this.groupBoxCommonFunction.Text = "常用功能";
+            this.toolTipMain.SetToolTip(this.groupBoxCommonFunction, "这里包含了启动游戏时的常用选项。");
             // 
             // checkBoxTestMode
             // 
@@ -246,6 +248,7 @@
             this.checkBoxTestMode.Size = new System.Drawing.Size(96, 16);
             this.checkBoxTestMode.TabIndex = 9;
             this.checkBoxTestMode.Text = "启用调试模式";
+            this.toolTipMain.SetToolTip(this.checkBoxTestMode, "勾选此框可以在启动游戏之后向您展示游戏后台的输出。（未实装）");
             this.checkBoxTestMode.UseVisualStyleBackColor = true;
             // 
             // buttonCheckUpdate
@@ -255,6 +258,7 @@
             this.buttonCheckUpdate.Size = new System.Drawing.Size(108, 23);
             this.buttonCheckUpdate.TabIndex = 6;
             this.buttonCheckUpdate.Text = "检查更新";
+            this.toolTipMain.SetToolTip(this.buttonCheckUpdate, "点击这里可以检查并安装启动器的更新。（未实装）");
             this.buttonCheckUpdate.UseVisualStyleBackColor = true;
             // 
             // checkBoxGenerateOneKeyLaunch
@@ -265,6 +269,7 @@
             this.checkBoxGenerateOneKeyLaunch.Size = new System.Drawing.Size(96, 16);
             this.checkBoxGenerateOneKeyLaunch.TabIndex = 3;
             this.checkBoxGenerateOneKeyLaunch.Text = "生成一键启动";
+            this.toolTipMain.SetToolTip(this.checkBoxGenerateOneKeyLaunch, "勾选此框可以在您的桌面生成一个直接启动游戏的快捷方式。（未实装）");
             this.checkBoxGenerateOneKeyLaunch.UseVisualStyleBackColor = true;
             // 
             // buttonForceReleaseMemory
@@ -274,6 +279,7 @@
             this.buttonForceReleaseMemory.Size = new System.Drawing.Size(108, 23);
             this.buttonForceReleaseMemory.TabIndex = 5;
             this.buttonForceReleaseMemory.Text = "强制释放内存";
+            this.toolTipMain.SetToolTip(this.buttonForceReleaseMemory, "点击这里可以强迫其他程序释放一些内存空间来分配给Minecraft，但这样可能会造成您系统的不稳定，所以如果没有必要，请不要使用该选项。（未实装）");
             this.buttonForceReleaseMemory.UseVisualStyleBackColor = true;
             this.buttonForceReleaseMemory.Click += new System.EventHandler(this.buttonForceReleaseMemory_Click);
             // 
@@ -285,6 +291,7 @@
             this.checkBoxFullScreen.Size = new System.Drawing.Size(72, 16);
             this.checkBoxFullScreen.TabIndex = 4;
             this.checkBoxFullScreen.Text = "全屏启动";
+            this.toolTipMain.SetToolTip(this.checkBoxFullScreen, "勾选次复选框可以让游戏在加载完成之后自动全屏。");
             this.checkBoxFullScreen.UseVisualStyleBackColor = true;
             // 
             // groupBoxSystemInfo
@@ -303,6 +310,7 @@
             this.groupBoxSystemInfo.TabIndex = 10;
             this.groupBoxSystemInfo.TabStop = false;
             this.groupBoxSystemInfo.Text = "系统信息";
+            this.toolTipMain.SetToolTip(this.groupBoxSystemInfo, "这里是有关于您计算机的配置和系统的信息。");
             // 
             // textJavaVersionActive
             // 
@@ -312,6 +320,7 @@
             this.textJavaVersionActive.Size = new System.Drawing.Size(71, 12);
             this.textJavaVersionActive.TabIndex = 7;
             this.textJavaVersionActive.Text = "JavaVersion";
+            this.toolTipMain.SetToolTip(this.textJavaVersionActive, "您操作系统中的Java版本。");
             // 
             // textGPUModelActive
             // 
@@ -321,6 +330,7 @@
             this.textGPUModelActive.Size = new System.Drawing.Size(53, 12);
             this.textGPUModelActive.TabIndex = 6;
             this.textGPUModelActive.Text = "GPUModel";
+            this.toolTipMain.SetToolTip(this.textGPUModelActive, "您的GPU型号。");
             // 
             // textCPUModelActive
             // 
@@ -330,6 +340,7 @@
             this.textCPUModelActive.Size = new System.Drawing.Size(53, 12);
             this.textCPUModelActive.TabIndex = 5;
             this.textCPUModelActive.Text = "CPUModel";
+            this.toolTipMain.SetToolTip(this.textCPUModelActive, "您的CPU型号。");
             // 
             // textOSVersionActive
             // 
@@ -339,6 +350,7 @@
             this.textOSVersionActive.Size = new System.Drawing.Size(59, 12);
             this.textOSVersionActive.TabIndex = 4;
             this.textOSVersionActive.Text = "OSVersion";
+            this.toolTipMain.SetToolTip(this.textOSVersionActive, "您的操作系统版本。");
             // 
             // textJavaVersion
             // 
@@ -358,6 +370,7 @@
             this.textGPUModel.Size = new System.Drawing.Size(35, 12);
             this.textGPUModel.TabIndex = 2;
             this.textGPUModel.Text = "GPU：";
+            this.toolTipMain.SetToolTip(this.textGPUModel, "您的GPU型号，这通常决定了您能否开启光影水反效果。");
             // 
             // textCPUModel
             // 
@@ -367,6 +380,7 @@
             this.textCPUModel.Size = new System.Drawing.Size(35, 12);
             this.textCPUModel.TabIndex = 1;
             this.textCPUModel.Text = "CPU：";
+            this.toolTipMain.SetToolTip(this.textCPUModel, "您的CPU型号，CPU越强，您的游戏在渲染大型场面时的效率越高。");
             // 
             // textOSVersion
             // 
@@ -376,6 +390,7 @@
             this.textOSVersion.Size = new System.Drawing.Size(65, 12);
             this.textOSVersion.TabIndex = 0;
             this.textOSVersion.Text = "操作系统：";
+            this.toolTipMain.SetToolTip(this.textOSVersion, "推荐使用最新的Windows10操作系统，本启动器不支持WindowsXP及以前的古老操作系统。");
             // 
             // buttonLaunch
             // 
@@ -384,6 +399,7 @@
             this.buttonLaunch.Size = new System.Drawing.Size(120, 50);
             this.buttonLaunch.TabIndex = 2;
             this.buttonLaunch.Text = "启动游戏";
+            this.toolTipMain.SetToolTip(this.buttonLaunch, "点击这里就可以启动游戏了。");
             this.buttonLaunch.UseVisualStyleBackColor = true;
             this.buttonLaunch.Click += new System.EventHandler(this.buttonLaunch_Click);
             // 
@@ -405,7 +421,7 @@
             this.listVersions.Name = "listVersions";
             this.listVersions.Size = new System.Drawing.Size(197, 292);
             this.listVersions.TabIndex = 1;
-            this.toolTipMain.SetToolTip(this.listVersions, "请选择想要启动的Minecraft版本。");
+            this.toolTipMain.SetToolTip(this.listVersions, "请在这里选择想要启动的Minecraft版本。");
             // 
             // groupBoxMemory
             // 
@@ -424,6 +440,7 @@
             this.groupBoxMemory.TabIndex = 9;
             this.groupBoxMemory.TabStop = false;
             this.groupBoxMemory.Text = "内存设置";
+            this.toolTipMain.SetToolTip(this.groupBoxMemory, "这里是有关于您计算机内存的信息和设置。");
             // 
             // textSetMemoryMB
             // 
@@ -441,6 +458,7 @@
             this.textBoxSetMemory.Size = new System.Drawing.Size(54, 21);
             this.textBoxSetMemory.TabIndex = 9;
             this.textBoxSetMemory.Text = "0";
+            this.toolTipMain.SetToolTip(this.textBoxSetMemory, "您输入的数字不能超过剩余大小。");
             this.textBoxSetMemory.TextChanged += new System.EventHandler(this.textBoxSetMemory_TextChanged);
             // 
             // textSetMemory
@@ -451,6 +469,7 @@
             this.textSetMemory.Size = new System.Drawing.Size(89, 12);
             this.textSetMemory.TabIndex = 8;
             this.textSetMemory.Text = "设置内存大小：";
+            this.toolTipMain.SetToolTip(this.textSetMemory, "请在右边输入您设置的内存大小。");
             // 
             // textRecommendMemory
             // 
@@ -470,6 +489,7 @@
             this.textTotalMemoryActive.Size = new System.Drawing.Size(29, 12);
             this.textTotalMemoryActive.TabIndex = 5;
             this.textTotalMemoryActive.Text = "0 MB";
+            this.toolTipMain.SetToolTip(this.textTotalMemoryActive, "物理计算机所拥有的内存大小。");
             // 
             // textRemainMemory
             // 
@@ -479,6 +499,7 @@
             this.textRemainMemory.Size = new System.Drawing.Size(65, 12);
             this.textRemainMemory.TabIndex = 3;
             this.textRemainMemory.Text = "剩余大小：";
+            this.toolTipMain.SetToolTip(this.textRemainMemory, "当前可用的内存大小。");
             // 
             // textRemainMemoryActive
             // 
@@ -488,6 +509,7 @@
             this.textRemainMemoryActive.Size = new System.Drawing.Size(29, 12);
             this.textRemainMemoryActive.TabIndex = 6;
             this.textRemainMemoryActive.Text = "0 MB";
+            this.toolTipMain.SetToolTip(this.textRemainMemoryActive, "可以使用的内存大小。");
             // 
             // textTotalMemory
             // 
@@ -497,6 +519,7 @@
             this.textTotalMemory.Size = new System.Drawing.Size(77, 12);
             this.textTotalMemory.TabIndex = 2;
             this.textTotalMemory.Text = "内存总大小：";
+            this.toolTipMain.SetToolTip(this.textTotalMemory, "物理计算机所拥有的内存大小。");
             // 
             // textRecommendMemoryActive
             // 
@@ -506,6 +529,7 @@
             this.textRecommendMemoryActive.Size = new System.Drawing.Size(29, 12);
             this.textRecommendMemoryActive.TabIndex = 7;
             this.textRecommendMemoryActive.Text = "0 MB";
+            this.toolTipMain.SetToolTip(this.textRecommendMemoryActive, "推荐设置的内存大小，这通常是内存总大小的四分之一。");
             // 
             // groupBoxLogin
             // 
@@ -527,6 +551,7 @@
             this.groupBoxLogin.TabIndex = 11;
             this.groupBoxLogin.TabStop = false;
             this.groupBoxLogin.Text = "验证与登录";
+            this.toolTipMain.SetToolTip(this.groupBoxLogin, "如果您有正版，请在这里进行登录。（未实装）");
             // 
             // textMimirNotice
             // 
@@ -536,6 +561,7 @@
             this.textMimirNotice.Size = new System.Drawing.Size(167, 12);
             this.textMimirNotice.TabIndex = 27;
             this.textMimirNotice.Text = "这里是Mimir验证服务器的公告";
+            this.toolTipMain.SetToolTip(this.textMimirNotice, "来自Mimir验证服务器的公告。");
             // 
             // buttonLogin
             // 
@@ -545,6 +571,7 @@
             this.buttonLogin.Size = new System.Drawing.Size(43, 23);
             this.buttonLogin.TabIndex = 27;
             this.buttonLogin.Text = "登录";
+            this.toolTipMain.SetToolTip(this.buttonLogin, "别忘了点击这里来登录。");
             this.buttonLogin.UseVisualStyleBackColor = true;
             // 
             // textBoxYggdrasilServer
@@ -554,6 +581,7 @@
             this.textBoxYggdrasilServer.Name = "textBoxYggdrasilServer";
             this.textBoxYggdrasilServer.Size = new System.Drawing.Size(140, 21);
             this.textBoxYggdrasilServer.TabIndex = 26;
+            this.toolTipMain.SetToolTip(this.textBoxYggdrasilServer, "地址应该包含http://或者https://，且通常是后者，因为前者并不安全，如果使用前者，您输入的密码将会是对任何人都可见的。");
             // 
             // textYggdrasilServer
             // 
@@ -563,6 +591,7 @@
             this.textYggdrasilServer.Size = new System.Drawing.Size(77, 12);
             this.textYggdrasilServer.TabIndex = 25;
             this.textYggdrasilServer.Text = "验证服务器：";
+            this.toolTipMain.SetToolTip(this.textYggdrasilServer, "请在右边输入验证服务器的完整地址。");
             // 
             // textPlayerRole
             // 
@@ -572,6 +601,7 @@
             this.textPlayerRole.Size = new System.Drawing.Size(65, 12);
             this.textPlayerRole.TabIndex = 9;
             this.textPlayerRole.Text = "登录角色：";
+            this.toolTipMain.SetToolTip(this.textPlayerRole, "下面是您账户中所拥有的角色，这只在验证方式为Authlib-injector或者Mimir/Atlas时才有效。");
             // 
             // listBoxPlayerRole
             // 
@@ -582,6 +612,7 @@
             this.listBoxPlayerRole.Name = "listBoxPlayerRole";
             this.listBoxPlayerRole.Size = new System.Drawing.Size(112, 52);
             this.listBoxPlayerRole.TabIndex = 8;
+            this.toolTipMain.SetToolTip(this.listBoxPlayerRole, "请在此选择您的游戏角色，但事实上官方正版并不支持多角色。");
             // 
             // textLoginType
             // 
@@ -591,6 +622,7 @@
             this.textLoginType.Size = new System.Drawing.Size(65, 12);
             this.textLoginType.TabIndex = 7;
             this.textLoginType.Text = "验证方式：";
+            this.toolTipMain.SetToolTip(this.textLoginType, "下面是您账户可以选择的验证方式。");
             // 
             // listBoxLoginType
             // 
@@ -605,6 +637,7 @@
             this.listBoxLoginType.Name = "listBoxLoginType";
             this.listBoxLoginType.Size = new System.Drawing.Size(103, 52);
             this.listBoxLoginType.TabIndex = 6;
+            this.toolTipMain.SetToolTip(this.listBoxLoginType, "请在这里选取您账户的验证方式。");
             this.listBoxLoginType.SelectedIndexChanged += new System.EventHandler(this.listBoxLoginType_SelectedIndexChanged);
             // 
             // textUsername
@@ -615,6 +648,7 @@
             this.textUsername.Size = new System.Drawing.Size(65, 12);
             this.textUsername.TabIndex = 2;
             this.textUsername.Text = "玩家名称：";
+            this.toolTipMain.SetToolTip(this.textUsername, "请在右边输入您游戏的名称。");
             // 
             // textBoxUsername
             // 
@@ -622,6 +656,7 @@
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(152, 21);
             this.textBoxUsername.TabIndex = 4;
+            this.toolTipMain.SetToolTip(this.textBoxUsername, "如果您是正版或者使用了第三方验证服务器，请在此处输入您的邮箱。");
             // 
             // textPassword
             // 
@@ -631,6 +666,7 @@
             this.textPassword.Size = new System.Drawing.Size(65, 12);
             this.textPassword.TabIndex = 3;
             this.textPassword.Text = "登录密码：";
+            this.toolTipMain.SetToolTip(this.textPassword, "如果有，请在右边输入您的登录密码。");
             // 
             // textBoxPassword
             // 
@@ -639,6 +675,7 @@
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(103, 21);
             this.textBoxPassword.TabIndex = 5;
+            this.toolTipMain.SetToolTip(this.textBoxPassword, "请在此处输入您的登录密码，如果忘记密码，请尝试联系验证服务器的管理员，如果您是要Mimir验证服务器，请直接点击上方的公告。");
             this.textBoxPassword.UseSystemPasswordChar = true;
             // 
             // pageMainAdvanced
@@ -676,6 +713,7 @@
             this.groupBoxLauncherSettings.TabIndex = 4;
             this.groupBoxLauncherSettings.TabStop = false;
             this.groupBoxLauncherSettings.Text = "启动器设置";
+            this.toolTipMain.SetToolTip(this.groupBoxLauncherSettings, "这里是关于启动器的设置。");
             // 
             // textProxyUsername
             // 
@@ -685,6 +723,7 @@
             this.textProxyUsername.Size = new System.Drawing.Size(53, 12);
             this.textProxyUsername.TabIndex = 20;
             this.textProxyUsername.Text = "用户名：";
+            this.toolTipMain.SetToolTip(this.textProxyUsername, "这里是代理服务器用户名。");
             // 
             // textProxyPassword
             // 
@@ -694,6 +733,7 @@
             this.textProxyPassword.Size = new System.Drawing.Size(41, 12);
             this.textProxyPassword.TabIndex = 19;
             this.textProxyPassword.Text = "密码：";
+            this.toolTipMain.SetToolTip(this.textProxyPassword, "这里是代理服务器密码。");
             // 
             // textBoxProxyPassword
             // 
@@ -717,6 +757,7 @@
             this.textProxyServerIP.Size = new System.Drawing.Size(77, 12);
             this.textProxyServerIP.TabIndex = 16;
             this.textProxyServerIP.Text = "服务器地址：";
+            this.toolTipMain.SetToolTip(this.textProxyServerIP, "这里是代理服务器地址。");
             // 
             // textProxyServerPort
             // 
@@ -726,6 +767,7 @@
             this.textProxyServerPort.Size = new System.Drawing.Size(41, 12);
             this.textProxyServerPort.TabIndex = 15;
             this.textProxyServerPort.Text = "端口：";
+            this.toolTipMain.SetToolTip(this.textProxyServerPort, "这里是代理服务器端口。");
             // 
             // textBoxProxyServerPort
             // 
@@ -749,6 +791,7 @@
             this.textProxy.Size = new System.Drawing.Size(65, 12);
             this.textProxy.TabIndex = 10;
             this.textProxy.Text = "代理设置：";
+            this.toolTipMain.SetToolTip(this.textProxy, "在右侧可以设置下载游戏或者登入账号时所使用的代理服务器。");
             // 
             // comboBoxLanguage
             // 
@@ -758,6 +801,7 @@
             this.comboBoxLanguage.Name = "comboBoxLanguage";
             this.comboBoxLanguage.Size = new System.Drawing.Size(453, 20);
             this.comboBoxLanguage.TabIndex = 9;
+            this.toolTipMain.SetToolTip(this.comboBoxLanguage, "在这里可以选择启动器语言。");
             // 
             // textLanguage
             // 
@@ -767,6 +811,7 @@
             this.textLanguage.Size = new System.Drawing.Size(77, 12);
             this.textLanguage.TabIndex = 8;
             this.textLanguage.Text = "启动器语言：";
+            this.toolTipMain.SetToolTip(this.textLanguage, "在右边可以选择启动器使用的语言，默认为汉语。");
             // 
             // comboBoxDownloadSource
             // 
@@ -776,6 +821,7 @@
             this.comboBoxDownloadSource.Name = "comboBoxDownloadSource";
             this.comboBoxDownloadSource.Size = new System.Drawing.Size(453, 20);
             this.comboBoxDownloadSource.TabIndex = 7;
+            this.toolTipMain.SetToolTip(this.comboBoxDownloadSource, "在这里可以换用其他的下载服务器，但请遵守对应规定。");
             // 
             // textDownloadSource
             // 
@@ -785,6 +831,7 @@
             this.textDownloadSource.Size = new System.Drawing.Size(53, 12);
             this.textDownloadSource.TabIndex = 6;
             this.textDownloadSource.Text = "下载源：";
+            this.toolTipMain.SetToolTip(this.textDownloadSource, "在右侧可以换用其他的下载服务器，默认为官方。");
             // 
             // comboBoxLauncherVisible
             // 
@@ -803,6 +850,7 @@
             this.textLauncherVisible.Size = new System.Drawing.Size(89, 12);
             this.textLauncherVisible.TabIndex = 4;
             this.textLauncherVisible.Text = "启动器可见性：";
+            this.toolTipMain.SetToolTip(this.textLauncherVisible, "在游戏启动之后，是否希望启动器窗口还可见。");
             // 
             // groupBoxLaunchSetting
             // 
@@ -834,6 +882,7 @@
             this.groupBoxLaunchSetting.TabIndex = 1;
             this.groupBoxLaunchSetting.TabStop = false;
             this.groupBoxLaunchSetting.Text = "游戏启动设置";
+            this.toolTipMain.SetToolTip(this.groupBoxLaunchSetting, "这里是和游戏的启动有关的高级设置。");
             // 
             // textBoxGameWindowHeight
             // 
@@ -842,6 +891,7 @@
             this.textBoxGameWindowHeight.Size = new System.Drawing.Size(50, 21);
             this.textBoxGameWindowHeight.TabIndex = 10;
             this.textBoxGameWindowHeight.Text = "480";
+            this.toolTipMain.SetToolTip(this.textBoxGameWindowHeight, "这里是游戏窗口的高度，单位：px。");
             // 
             // textBoxGameWindowWidth
             // 
@@ -850,6 +900,7 @@
             this.textBoxGameWindowWidth.Size = new System.Drawing.Size(50, 21);
             this.textBoxGameWindowWidth.TabIndex = 9;
             this.textBoxGameWindowWidth.Text = "854";
+            this.toolTipMain.SetToolTip(this.textBoxGameWindowWidth, "这里是游戏窗口的宽度，单位：px。");
             // 
             // comboBoxJavaSelect
             // 
@@ -860,6 +911,7 @@
             this.comboBoxJavaSelect.Name = "comboBoxJavaSelect";
             this.comboBoxJavaSelect.Size = new System.Drawing.Size(137, 20);
             this.comboBoxJavaSelect.TabIndex = 22;
+            this.toolTipMain.SetToolTip(this.comboBoxJavaSelect, "如果您的电脑安装了多个版本的Java，可以在此选择您希望使用的Java版本。");
             this.comboBoxJavaSelect.ValueMember = "0";
             // 
             // buttonClearPersionalFile
@@ -869,6 +921,7 @@
             this.buttonClearPersionalFile.Size = new System.Drawing.Size(100, 23);
             this.buttonClearPersionalFile.TabIndex = 21;
             this.buttonClearPersionalFile.Text = "清理游戏文件";
+            this.toolTipMain.SetToolTip(this.buttonClearPersionalFile, "删除游戏启动时会自动生成的无用文件，推荐在制作整合包时使用本功能。");
             this.buttonClearPersionalFile.UseVisualStyleBackColor = true;
             // 
             // buttonImportGame
@@ -878,6 +931,7 @@
             this.buttonImportGame.Size = new System.Drawing.Size(100, 23);
             this.buttonImportGame.TabIndex = 20;
             this.buttonImportGame.Text = "导入游戏文件夹";
+            this.toolTipMain.SetToolTip(this.buttonImportGame, "从其他的路径导入游戏文件夹。");
             this.buttonImportGame.UseVisualStyleBackColor = true;
             // 
             // checkBoxDisableDefaultPublicAssets
@@ -888,6 +942,7 @@
             this.checkBoxDisableDefaultPublicAssets.Size = new System.Drawing.Size(96, 16);
             this.checkBoxDisableDefaultPublicAssets.TabIndex = 19;
             this.checkBoxDisableDefaultPublicAssets.Text = "禁用公共资源";
+            this.toolTipMain.SetToolTip(this.checkBoxDisableDefaultPublicAssets, "勾选此框以禁用来自%AppData%的资源。");
             this.checkBoxDisableDefaultPublicAssets.UseVisualStyleBackColor = true;
             // 
             // buttonAutoJavaPath
@@ -897,6 +952,7 @@
             this.buttonAutoJavaPath.Size = new System.Drawing.Size(120, 23);
             this.buttonAutoJavaPath.TabIndex = 18;
             this.buttonAutoJavaPath.Text = "自动获取Java路径";
+            this.toolTipMain.SetToolTip(this.buttonAutoJavaPath, "点我可以自动获取Java的路径。");
             this.buttonAutoJavaPath.UseVisualStyleBackColor = true;
             this.buttonAutoJavaPath.Click += new System.EventHandler(this.buttonAutoJavaPath_Click);
             // 
@@ -908,6 +964,7 @@
             this.checkBoxSuperOptimization.Size = new System.Drawing.Size(96, 16);
             this.checkBoxSuperOptimization.TabIndex = 17;
             this.checkBoxSuperOptimization.Text = "启用超级优化";
+            this.toolTipMain.SetToolTip(this.checkBoxSuperOptimization, "勾选此框以开启超级优化模式。");
             this.checkBoxSuperOptimization.UseVisualStyleBackColor = true;
             // 
             // checkBoxForceLaunch
@@ -918,6 +975,7 @@
             this.checkBoxForceLaunch.Size = new System.Drawing.Size(72, 16);
             this.checkBoxForceLaunch.TabIndex = 16;
             this.checkBoxForceLaunch.Text = "强制启动";
+            this.toolTipMain.SetToolTip(this.checkBoxForceLaunch, "勾选此框可以忽略资源文件的缺失而尝试启动游戏，但不保证能够启动成功。");
             this.checkBoxForceLaunch.UseVisualStyleBackColor = true;
             // 
             // buttonExploreJavaPath
@@ -927,6 +985,7 @@
             this.buttonExploreJavaPath.Size = new System.Drawing.Size(75, 23);
             this.buttonExploreJavaPath.TabIndex = 2;
             this.buttonExploreJavaPath.Text = "浏览...";
+            this.toolTipMain.SetToolTip(this.buttonExploreJavaPath, "点我可以浏览Java的路径。");
             this.buttonExploreJavaPath.UseVisualStyleBackColor = true;
             this.buttonExploreJavaPath.Click += new System.EventHandler(this.buttonExploreJavaPath_Click);
             // 
@@ -936,6 +995,7 @@
             this.textBoxStartDirectConnectionServer.Name = "textBoxStartDirectConnectionServer";
             this.textBoxStartDirectConnectionServer.Size = new System.Drawing.Size(253, 21);
             this.textBoxStartDirectConnectionServer.TabIndex = 15;
+            this.toolTipMain.SetToolTip(this.textBoxStartDirectConnectionServer, "如果您希望快速进入某个固定的服务器，使♀用我可能是个不错的选择。");
             // 
             // textStartDirectConnectionServer
             // 
@@ -945,6 +1005,7 @@
             this.textStartDirectConnectionServer.Size = new System.Drawing.Size(77, 12);
             this.textStartDirectConnectionServer.TabIndex = 14;
             this.textStartDirectConnectionServer.Text = "直入服务器：";
+            this.toolTipMain.SetToolTip(this.textStartDirectConnectionServer, "右边是您在游戏启动之后直接进入的服务器，默认为空。");
             // 
             // textMinecraftAdditionalParameter
             // 
@@ -954,6 +1015,7 @@
             this.textMinecraftAdditionalParameter.Size = new System.Drawing.Size(119, 12);
             this.textMinecraftAdditionalParameter.TabIndex = 4;
             this.textMinecraftAdditionalParameter.Text = "Minecraft附加参数：";
+            this.toolTipMain.SetToolTip(this.textMinecraftAdditionalParameter, "右侧可以添加附加的Minecraft启动参数，默认为空。");
             // 
             // textBoxMinecraftAdditionalParameter
             // 
@@ -961,6 +1023,7 @@
             this.textBoxMinecraftAdditionalParameter.Name = "textBoxMinecraftAdditionalParameter";
             this.textBoxMinecraftAdditionalParameter.Size = new System.Drawing.Size(423, 21);
             this.textBoxMinecraftAdditionalParameter.TabIndex = 5;
+            this.toolTipMain.SetToolTip(this.textBoxMinecraftAdditionalParameter, "在修改此项之前，你最好了解Minecraft的启动参数。");
             // 
             // checkBoxDisableDefaultJVMParameter
             // 
@@ -970,6 +1033,7 @@
             this.checkBoxDisableDefaultJVMParameter.Size = new System.Drawing.Size(114, 16);
             this.checkBoxDisableDefaultJVMParameter.TabIndex = 13;
             this.checkBoxDisableDefaultJVMParameter.Text = "禁用默认JVM参数";
+            this.toolTipMain.SetToolTip(this.checkBoxDisableDefaultJVMParameter, "勾选此框以禁用默认的JVM参数，在使用Java9的时候一定要勾选。");
             this.checkBoxDisableDefaultJVMParameter.UseVisualStyleBackColor = true;
             // 
             // textGameWindowSizeMultiply
@@ -980,6 +1044,7 @@
             this.textGameWindowSizeMultiply.Size = new System.Drawing.Size(17, 12);
             this.textGameWindowSizeMultiply.TabIndex = 12;
             this.textGameWindowSizeMultiply.Text = "×";
+            this.toolTipMain.SetToolTip(this.textGameWindowSizeMultiply, "这里是萌萌哒乘号~");
             // 
             // textGameWindowSize
             // 
@@ -989,6 +1054,7 @@
             this.textGameWindowSize.Size = new System.Drawing.Size(89, 12);
             this.textGameWindowSize.TabIndex = 11;
             this.textGameWindowSize.Text = "游戏窗口大小：";
+            this.toolTipMain.SetToolTip(this.textGameWindowSize, "右边是游戏窗口的大小，默认是854*480。");
             // 
             // textBoxJVMAdditionalParameter
             // 
@@ -998,6 +1064,7 @@
             this.textBoxJVMAdditionalParameter.TabIndex = 7;
             this.textBoxJVMAdditionalParameter.Text = "-Dfml.ignoreInvalidMinecraftCertificates=true -Dfml.ignorePatchDiscrepancies=true" +
     "";
+            this.toolTipMain.SetToolTip(this.textBoxJVMAdditionalParameter, "请在专业人士的帮助下修改次选项，除非你知道你自己在干什么。");
             // 
             // textJVMAdditionalParameter
             // 
@@ -1007,6 +1074,7 @@
             this.textJVMAdditionalParameter.Size = new System.Drawing.Size(83, 12);
             this.textJVMAdditionalParameter.TabIndex = 6;
             this.textJVMAdditionalParameter.Text = "JVM附加参数：";
+            this.toolTipMain.SetToolTip(this.textJVMAdditionalParameter, "右边是JVM（Java虚拟机）的默认启动参数，如果你不了解JVM，请不要擅自更改此项。");
             // 
             // checkBoxVersionIsolate
             // 
@@ -1016,6 +1084,7 @@
             this.checkBoxVersionIsolate.Size = new System.Drawing.Size(96, 16);
             this.checkBoxVersionIsolate.TabIndex = 3;
             this.checkBoxVersionIsolate.Text = "使用版本隔离";
+            this.toolTipMain.SetToolTip(this.checkBoxVersionIsolate, "勾选此框以强制游戏各版本的存档、资源包等文件隔离。");
             this.checkBoxVersionIsolate.UseVisualStyleBackColor = true;
             // 
             // textBoxSetJavaPath
@@ -1025,6 +1094,7 @@
             this.textBoxSetJavaPath.Name = "textBoxSetJavaPath";
             this.textBoxSetJavaPath.Size = new System.Drawing.Size(423, 21);
             this.textBoxSetJavaPath.TabIndex = 1;
+            this.toolTipMain.SetToolTip(this.textBoxSetJavaPath, "这里是游戏将要使用的Java路径。");
             // 
             // checkBoxSetJavaPath
             // 
@@ -1034,6 +1104,7 @@
             this.checkBoxSetJavaPath.Size = new System.Drawing.Size(120, 16);
             this.checkBoxSetJavaPath.TabIndex = 0;
             this.checkBoxSetJavaPath.Text = "手动设定Java路径";
+            this.toolTipMain.SetToolTip(this.checkBoxSetJavaPath, "勾选此框可以在右侧手动输入Java路径。");
             this.checkBoxSetJavaPath.UseVisualStyleBackColor = true;
             this.checkBoxSetJavaPath.CheckedChanged += new System.EventHandler(this.checkBoxSetJavaPath_CheckedChanged);
             // 
@@ -1431,11 +1502,12 @@
             // textNotificAPI
             // 
             this.textNotificAPI.AutoSize = true;
-            this.textNotificAPI.Location = new System.Drawing.Point(439, 345);
+            this.textNotificAPI.Location = new System.Drawing.Point(326, 342);
             this.textNotificAPI.Name = "textNotificAPI";
             this.textNotificAPI.Size = new System.Drawing.Size(65, 12);
             this.textNotificAPI.TabIndex = 2;
             this.textNotificAPI.Text = "NotificAPI";
+            this.toolTipMain.SetToolTip(this.textNotificAPI, "这里是来自Magicpush的推送内容。");
             // 
             // notifyIcon
             // 
@@ -1498,7 +1570,7 @@
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip";
-            this.toolTipMain.SetToolTip(this.statusStrip, "启动器状态栏");
+            this.toolTipMain.SetToolTip(this.statusStrip, "这里是启动器状态栏，可以显示启动器的实时状态，有时还会显示一些必要的提示。");
             // 
             // textStatus
             // 

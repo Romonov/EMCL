@@ -44,6 +44,10 @@ namespace EMCL
             string JsonInherits = "";
 
             string GameDir = $@"{Main.GamePath}";
+            if (VerIsolate)
+            {
+                GameDir = $@"{Main.GamePath}\versions\{Version}";
+            }
 
             string NativesPath = $@"{Main.GamePath}\versions\{Version}\{Version}-natives";
 
@@ -106,7 +110,7 @@ namespace EMCL
                     .Replace("${auth_player_name}", $"{Username}")
                     .Replace("${version_name}", $"\"EMCL-{Main.Version}\"")
                     .Replace("${version_type}", $"\"EMCL-{Main.Version}\"")
-                    .Replace("${game_directory}", $"{Main.GamePath}")
+                    .Replace("${game_directory}", $"{GameDir}")
                     .Replace("${assets_root}", $"{AssetsDir}")
                     .Replace("${assets_index_name}", $"{AssetsIndex}")
                     .Replace("${user_type}", $"Legacy")
