@@ -156,11 +156,11 @@
             this.textNotificAPI = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.显示启动器主界面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.结束游戏进程ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bug反馈ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.浅墨小站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.退出启动器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.KillGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BugReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTipMain = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -1502,12 +1502,13 @@
             // textNotificAPI
             // 
             this.textNotificAPI.AutoSize = true;
-            this.textNotificAPI.Location = new System.Drawing.Point(326, 342);
+            this.textNotificAPI.Location = new System.Drawing.Point(373, 342);
             this.textNotificAPI.Name = "textNotificAPI";
             this.textNotificAPI.Size = new System.Drawing.Size(65, 12);
             this.textNotificAPI.TabIndex = 2;
             this.textNotificAPI.Text = "NotificAPI";
             this.toolTipMain.SetToolTip(this.textNotificAPI, "这里是来自Magicpush的推送内容。");
+            this.textNotificAPI.Click += new System.EventHandler(this.textNotificAPI_Click);
             // 
             // notifyIcon
             // 
@@ -1519,43 +1520,45 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.显示启动器主界面ToolStripMenuItem,
-            this.结束游戏进程ToolStripMenuItem,
-            this.bug反馈ToolStripMenuItem,
-            this.浅墨小站ToolStripMenuItem,
-            this.退出启动器ToolStripMenuItem});
+            this.ShowToolStripMenuItem,
+            this.KillGameToolStripMenuItem,
+            this.BugReportToolStripMenuItem,
+            this.SiteToolStripMenuItem,
+            this.ExitToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(173, 114);
             // 
-            // 显示启动器主界面ToolStripMenuItem
+            // ShowToolStripMenuItem
             // 
-            this.显示启动器主界面ToolStripMenuItem.Name = "显示启动器主界面ToolStripMenuItem";
-            this.显示启动器主界面ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.显示启动器主界面ToolStripMenuItem.Text = "显示启动器主界面";
+            this.ShowToolStripMenuItem.Name = "ShowToolStripMenuItem";
+            this.ShowToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.ShowToolStripMenuItem.Text = "显示启动器主界面";
             // 
-            // 结束游戏进程ToolStripMenuItem
+            // KillGameToolStripMenuItem
             // 
-            this.结束游戏进程ToolStripMenuItem.Name = "结束游戏进程ToolStripMenuItem";
-            this.结束游戏进程ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.结束游戏进程ToolStripMenuItem.Text = "结束游戏进程";
+            this.KillGameToolStripMenuItem.Name = "KillGameToolStripMenuItem";
+            this.KillGameToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.KillGameToolStripMenuItem.Text = "结束游戏进程";
             // 
-            // bug反馈ToolStripMenuItem
+            // BugReportToolStripMenuItem
             // 
-            this.bug反馈ToolStripMenuItem.Name = "bug反馈ToolStripMenuItem";
-            this.bug反馈ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.bug反馈ToolStripMenuItem.Text = "Bug反馈...";
+            this.BugReportToolStripMenuItem.Name = "BugReportToolStripMenuItem";
+            this.BugReportToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.BugReportToolStripMenuItem.Text = "Bug反馈...";
             // 
-            // 浅墨小站ToolStripMenuItem
+            // SiteToolStripMenuItem
             // 
-            this.浅墨小站ToolStripMenuItem.Name = "浅墨小站ToolStripMenuItem";
-            this.浅墨小站ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.浅墨小站ToolStripMenuItem.Text = "浅墨小站";
+            this.SiteToolStripMenuItem.Name = "SiteToolStripMenuItem";
+            this.SiteToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.SiteToolStripMenuItem.Text = "浅墨小站";
+            this.SiteToolStripMenuItem.Click += new System.EventHandler(this.SiteToolStripMenuItem_Click);
             // 
-            // 退出启动器ToolStripMenuItem
+            // ExitToolStripMenuItem
             // 
-            this.退出启动器ToolStripMenuItem.Name = "退出启动器ToolStripMenuItem";
-            this.退出启动器ToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.退出启动器ToolStripMenuItem.Text = "退出启动器";
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.ExitToolStripMenuItem.Text = "退出启动器";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // statusStrip
             // 
@@ -1685,11 +1688,11 @@
         private System.Windows.Forms.Button buttonForceReleaseMemory;
         private System.Windows.Forms.CheckBox checkBoxFullScreen;
         private System.Windows.Forms.CheckBox checkBoxGenerateOneKeyLaunch;
-        private System.Windows.Forms.ToolStripMenuItem 显示启动器主界面ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 结束游戏进程ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bug反馈ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 浅墨小站ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退出启动器ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem KillGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BugReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxLaunchSetting;
         private System.Windows.Forms.CheckBox checkBoxSetJavaPath;
         private System.Windows.Forms.Button buttonExploreJavaPath;

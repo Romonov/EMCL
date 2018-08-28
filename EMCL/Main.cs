@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using RUL.Magicpush;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +17,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.5";
+        public const string Version = "0.3.6";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
@@ -24,11 +27,21 @@ namespace EMCL
         public static string JavaVersion = "";
 
         public static LoginType loginType = LoginType.Offline;
-
+        Notice showNotice = new Notice();
 
         public Main()
         {
             InitializeComponent();
+
+            // Init plugin framework
+            /*
+            if(!Directory.Exists(Application.StartupPath + @"\Plugins"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + @"\Plugins");
+            }
+            */
+            Initialize();
+
 
             // Read config file
 
@@ -111,8 +124,11 @@ namespace EMCL
                 }
             }
 
+            // Fixme
             // Get Notice 
-
+            //showNotice = GetNotice();
+            //textNotificAPI.Text = showNotice.Title;
+            
             // Status
             textStatus.Text = "就绪";
         }
@@ -264,5 +280,66 @@ namespace EMCL
         {
             textStatus.Text = "已完成";
         }
+
+        private void textNotificAPI_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(showNotice.Link);
+        }
+
+        /*
+        public static Notice GetNotice()
+        {
+            List<Notice> list = RUL.Magicpush.GetNotice.Get();
+            Random random = new Random();
+            Notice notice = list.ToArray()[random.Next(1, list.Count + 1)];
+            return notice;
+        }
+        */
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void SiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // KCript
+        [DllImport("KCript.dll", EntryPoint = "Initialize")]
+        public static extern int Initialize();
+
+        [DllImport("KCript.dll", EntryPoint = "Enable")]
+        public static extern int Enable();
+
+        [DllImport("KCript.dll", EntryPoint = "Trigger")]
+        public static extern string Trigger(
+            string Name, 
+            string Msg
+        );
+
+        [DllImport("KCript.dll", EntryPoint = "getPluginList")]
+        public static extern string getPluginList();
+
+        [DllImport("KCript.dll", EntryPoint = "getVersion")]
+        public static extern string getVersion(
+            string Name
+        );
+
+        [DllImport("KCript.dll", EntryPoint = "getPluginName")]
+        public static extern string getPluginName(
+            int ID
+        );
+
+        [DllImport("KCript.dll", EntryPoint = "getPluginNum")]
+        public static extern string getPluginNum(
+            string Name
+        );
+
+        [DllImport("KCript.dll", EntryPoint = "freePlugin")]
+        public static extern int freePlugin(
+            string Name
+        );
     }
 }
