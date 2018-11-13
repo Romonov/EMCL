@@ -76,17 +76,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComputerInfo.cs" />
-    <Compile Include="DownloadProcess.cs">
+    <Compile Include="Common\ComputerInfo.cs" />
+    <Compile Include="Downloader\DownloadProcess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DownloadProcess.Designer.cs">
+    <Compile Include="Downloader\DownloadProcess.Designer.cs">
       <DependentUpon>DownloadProcess.cs</DependentUpon>
     </Compile>
-    <Compile Include="Java.cs" />
-    <Compile Include="Launcher.cs" />
-    <Compile Include="LauncherLegacy.cs" />
-    <Compile Include="LauncherNew.cs" />
+    <Compile Include="Common\Java.cs" />
+    <Compile Include="Launcher\Launcher.cs" />
+    <Compile Include="Launcher\LauncherLegacy.cs" />
+    <Compile Include="Launcher\LauncherNew.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,7 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DownloadProcess.resx">
+    <EmbeddedResource Include="Downloader\DownloadProcess.resx">
       <DependentUpon>DownloadProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
@@ -143,5 +143,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Win32;
-using RUL.Magicpush;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.6";
+        public const string Version = "0.3.7";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
@@ -27,21 +27,13 @@ namespace EMCL
         public static string JavaVersion = "";
 
         public static LoginType loginType = LoginType.Offline;
-        Notice showNotice = new Notice();
 
         public Main()
         {
             InitializeComponent();
 
             // Init plugin framework
-            /*
-            if(!Directory.Exists(Application.StartupPath + @"\Plugins"))
-            {
-                Directory.CreateDirectory(Application.StartupPath + @"\Plugins");
-            }
-            */
             Initialize();
-
 
             // Read config file
 
@@ -123,12 +115,7 @@ namespace EMCL
                     tabMain.SelectedIndex = 2;
                 }
             }
-
-            // Fixme
-            // Get Notice 
-            //showNotice = GetNotice();
-            //textNotificAPI.Text = showNotice.Title;
-            
+                        
             // Status
             textStatus.Text = "就绪";
         }
@@ -283,7 +270,7 @@ namespace EMCL
 
         private void textNotificAPI_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(showNotice.Link);
+            Process.Start("");
         }
 
         /*
@@ -306,6 +293,7 @@ namespace EMCL
 
         }
 
+        #region KCript
         // KCript
         [DllImport("KCript.dll", EntryPoint = "Initialize")]
         public static extern int Initialize();
@@ -341,5 +329,7 @@ namespace EMCL
         public static extern int freePlugin(
             string Name
         );
+
+        #endregion
     }
 }

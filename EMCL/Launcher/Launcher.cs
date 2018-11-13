@@ -133,7 +133,7 @@ namespace EMCL
                 RunCommand += $" --height {Height} --width {Width}";
             }
 
-            //MessageBox.Show(RunCommand);
+            MessageBox.Show(RunCommand);
 
             Process StartMinecraft = new Process();
             ProcessStartInfo StartMinecraftInfo = new ProcessStartInfo(JavaPath, RunCommand);
