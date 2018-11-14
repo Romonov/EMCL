@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using EMCL.Common;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,12 +18,12 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.7";
+        public const string Version = "0.3.8";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
-        public static string[] JavaPaths = null;
-        public static string[] JavaVersions = null;
+        public static string[] JavaPaths;
+        public static string[] JavaVersions;
         public static string JavaPath = ""; 
         public static string JavaVersion = "";
 
@@ -33,7 +34,7 @@ namespace EMCL
             InitializeComponent();
 
             // Init plugin framework
-            Initialize();
+            KCriptsFramework.Initialize();
 
             // Read config file
 
@@ -78,8 +79,28 @@ namespace EMCL
             listBoxPlayerRole.Enabled = false;
             textMimirNotice.Visible = false;
 
+            // Todo: 这个实现将会被修改
             // Find Javas
-            FindJava();
+            if (!Java.Init())
+            {
+                DialogResult = MessageBox.Show(text: "Java获取失败，可能是没有安装Java也可能是启动器的问题，请尝试安装Java或配置Java环境变量。\n（但仍可以尝试启动，不过产生任何异常概不负责，还要继续运行吗？）", caption: "EMCL 无法找到Java", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Error);
+                if (DialogResult == DialogResult.OK)
+                {
+                    checkBoxSetJavaPath.Checked = true;
+                    textBoxSetJavaPath.Enabled = true;
+                    textBoxSetJavaPath.Text = "java";
+                }
+                else
+                {
+                    Environment.Exit(2);
+                }
+            }
+            else
+            {
+                textBoxSetJavaPath.Text = Java.JavaPath;
+                comboBoxJavaSelect.Items.Add(JavaVersion);
+                comboBoxJavaSelect.SelectedIndex = 0;
+            }
 
             textJavaVersionActive.Text = JavaVersion;
 
@@ -90,8 +111,8 @@ namespace EMCL
             try
             {
                 listVersions.Items.Clear();
-                String[] Versions = Directory.GetDirectories(GamePath + "\\versions");
-                foreach (String itemVerisons in Versions)
+                string[] Versions = Directory.GetDirectories(GamePath + "\\versions");
+                foreach (string itemVerisons in Versions)
                 {
                     if (File.Exists($@"{itemVerisons}\\{itemVerisons.Replace(GamePath + "\\versions\\", "")}.json"))
                     {
@@ -136,32 +157,9 @@ namespace EMCL
 
         private void buttonAutoJavaPath_Click(object sender, EventArgs e)
         {
-            FindJava();
-        }
-
-        private void FindJava()
-        {
-            string str = Java.Find();
-            if (str != "Error")
-            {
-                textBoxSetJavaPath.Text = str;
-                comboBoxJavaSelect.Items.Add(JavaVersion);
-                comboBoxJavaSelect.SelectedIndex = 0;
-            }
-            else
-            {
-                DialogResult = MessageBox.Show(text: "Java获取失败，可能是没有安装Java也可能是启动器的问题，请尝试安装Java或配置Java环境变量。\n（但仍可以尝试启动，不过产生任何异常概不负责，还要继续运行吗？）", caption: "EMCL 无法找到Java", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Error);
-                if (DialogResult == DialogResult.OK)
-                {
-                    checkBoxSetJavaPath.Checked = true;
-                    textBoxSetJavaPath.Enabled = true;
-                    textBoxSetJavaPath.Text = "java";
-                }
-                else
-                {
-                    Environment.Exit(2);
-                }
-            }
+            textBoxSetJavaPath.Text = Java.Find();
+            comboBoxJavaSelect.Items.Add(JavaVersion);
+            comboBoxJavaSelect.SelectedIndex = 0;
         }
 
         private void buttonLaunch_Click(object sender, EventArgs e)
@@ -272,17 +270,7 @@ namespace EMCL
         {
             Process.Start("");
         }
-
-        /*
-        public static Notice GetNotice()
-        {
-            List<Notice> list = RUL.Magicpush.GetNotice.Get();
-            Random random = new Random();
-            Notice notice = list.ToArray()[random.Next(1, list.Count + 1)];
-            return notice;
-        }
-        */
-
+        
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
@@ -292,44 +280,5 @@ namespace EMCL
         {
 
         }
-
-        #region KCript
-        // KCript
-        [DllImport("KCript.dll", EntryPoint = "Initialize")]
-        public static extern int Initialize();
-
-        [DllImport("KCript.dll", EntryPoint = "Enable")]
-        public static extern int Enable();
-
-        [DllImport("KCript.dll", EntryPoint = "Trigger")]
-        public static extern string Trigger(
-            string Name, 
-            string Msg
-        );
-
-        [DllImport("KCript.dll", EntryPoint = "getPluginList")]
-        public static extern string getPluginList();
-
-        [DllImport("KCript.dll", EntryPoint = "getVersion")]
-        public static extern string getVersion(
-            string Name
-        );
-
-        [DllImport("KCript.dll", EntryPoint = "getPluginName")]
-        public static extern string getPluginName(
-            int ID
-        );
-
-        [DllImport("KCript.dll", EntryPoint = "getPluginNum")]
-        public static extern string getPluginNum(
-            string Name
-        );
-
-        [DllImport("KCript.dll", EntryPoint = "freePlugin")]
-        public static extern int freePlugin(
-            string Name
-        );
-
-        #endregion
     }
 }

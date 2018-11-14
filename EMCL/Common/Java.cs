@@ -9,13 +9,31 @@ namespace EMCL
 {
     class Java
     {
+        // Todo: 这个实现将会被修改
+        public static string JavaPath = "";
+
+        public static bool Init()
+        {
+            JavaPath = Find();
+            if (JavaPath == "Error")
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static string Find()
         {
             RegistryKey registryKey;
+
             if (Environment.Is64BitOperatingSystem)
+            {
                 registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
+            }
             else
+            {
                 registryKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
+            }
 
             try
             {

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EMCL.Common;
 using ICSharpCode.SharpZipLib.Zip;
 using Newtonsoft.Json;
 
@@ -66,14 +67,11 @@ namespace EMCL
             }
             if (Directory.GetFiles(NativesPath).Length == 0)
             {
-                try
-                {
-                    DecompressNatives(JsonMain, NativesPath);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message, "EMCL 启动错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                DecompressNatives(JsonMain, NativesPath, false);
+            }
+            if (!File.Exists(NativesPath + "\\lwjgl.dll"))
+            {
+                DecompressNatives(JsonMain, NativesPath, true);
             }
 
             string MainClass = JsonMain.mainClass;
@@ -133,7 +131,7 @@ namespace EMCL
                 RunCommand += $" --height {Height} --width {Width}";
             }
 
-            MessageBox.Show(RunCommand);
+            //MessageBox.Show(RunCommand);
 
             Process StartMinecraft = new Process();
             ProcessStartInfo StartMinecraftInfo = new ProcessStartInfo(JavaPath, RunCommand);
@@ -163,12 +161,12 @@ namespace EMCL
             return cp;
         }
 
-        private static void DecompressNatives(MainJson Json, string path)
+        private static void DecompressNatives(MainJson Json, string path, bool IsAutoDecompressLwjgl)
         {
             string name = "";
             for (int i = 0; i < Json.libraries.Length; i++)
             {
-                if(Json.libraries[i].extract != null)
+                if(Json.libraries[i].extract != null && Json.libraries[i].natives.windows != null)
                 {
                     string[] tmp = Json.libraries[i].name.Split(':');
                     string[] tmp2 = tmp[0].Split('.');
@@ -181,9 +179,36 @@ namespace EMCL
                     name += $@"\{tmp[2]}";
                     name += $@"\{tmp[1]}-{tmp[2]}-natives-windows.jar";
 
-                    (new FastZip()).ExtractZip(name.Replace("${arch}", "32"), path, "");
+                    try
+                    {
+                        (new FastZip()).ExtractZip(name.Replace("${arch}", "32"), path, "");
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message, "EMCL 启动错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                if (IsAutoDecompressLwjgl)
+                {
+                    if (Json.libraries[i].name.Contains("lwjgl"))
+                    {
+                        string[] tmp = Json.libraries[i].name.Split(':');
+                        string[] tmp2 = tmp[0].Split('.');
+                        name = $@"{Main.GamePath}\libraries";
+                        for (int j = 0; j < tmp2.Length; j++)
+                        {
+                            name += $@"\{tmp2[j]}";
+                        }
+                        name += $@"\{tmp[1]}";
+                        name += $@"\{tmp[2]}";
+                        name += $@"\{tmp[1]}-{tmp[2]}-natives-windows.jar";
+
+                        (new FastZip()).ExtractZip(name.Replace("${arch}", "32"), path, "");
+                    }
                 }
             }
+            FileWorker.DeleteFiles(path, new string[] { ".sha1", ".git" }, true, true);
         }
 
         private static string GetLaunchType(string Version)
