@@ -50,6 +50,13 @@
             this.buttonLaunch = new System.Windows.Forms.Button();
             this.textVersionChoose = new System.Windows.Forms.Label();
             this.listVersions = new System.Windows.Forms.ListBox();
+            this.contextMenuStripMinecraftVersions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RefreshListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.GetResourceFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GotoVersionFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GotoModsFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxMemory = new System.Windows.Forms.GroupBox();
             this.textSetMemoryMB = new System.Windows.Forms.Label();
             this.textBoxSetMemory = new System.Windows.Forms.TextBox();
@@ -168,10 +175,12 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.textStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.pageMainModpacks = new System.Windows.Forms.TabPage();
             this.tabMain.SuspendLayout();
             this.pageMainLaunch.SuspendLayout();
             this.groupBoxCommonFunction.SuspendLayout();
             this.groupBoxSystemInfo.SuspendLayout();
+            this.contextMenuStripMinecraftVersions.SuspendLayout();
             this.groupBoxMemory.SuspendLayout();
             this.groupBoxLogin.SuspendLayout();
             this.pageMainAdvanced.SuspendLayout();
@@ -196,6 +205,7 @@
             this.tabMain.Controls.Add(this.pageMainLaunch);
             this.tabMain.Controls.Add(this.pageMainAdvanced);
             this.tabMain.Controls.Add(this.pageMainDownloadCenter);
+            this.tabMain.Controls.Add(this.pageMainModpacks);
             this.tabMain.Controls.Add(this.pageMainUpdate);
             this.tabMain.Controls.Add(this.pageMainAbout);
             this.tabMain.Cursor = System.Windows.Forms.Cursors.Default;
@@ -417,6 +427,7 @@
             // 
             // listVersions
             // 
+            this.listVersions.ContextMenuStrip = this.contextMenuStripMinecraftVersions;
             this.listVersions.FormattingEnabled = true;
             this.listVersions.ItemHeight = 12;
             this.listVersions.Location = new System.Drawing.Point(10, 18);
@@ -424,6 +435,54 @@
             this.listVersions.Size = new System.Drawing.Size(197, 292);
             this.listVersions.TabIndex = 1;
             this.toolTipMain.SetToolTip(this.listVersions, "请在这里选择想要启动的Minecraft版本。");
+            // 
+            // contextMenuStripMinecraftVersions
+            // 
+            this.contextMenuStripMinecraftVersions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RefreshListToolStripMenuItem,
+            this.toolStripSeparator,
+            this.GetResourceFilesToolStripMenuItem,
+            this.RenameToolStripMenuItem,
+            this.GotoVersionFolderToolStripMenuItem,
+            this.GotoModsFolderToolStripMenuItem});
+            this.contextMenuStripMinecraftVersions.Name = "contextMenuStripMinecraftVersions";
+            this.contextMenuStripMinecraftVersions.Size = new System.Drawing.Size(231, 120);
+            // 
+            // RefreshListToolStripMenuItem
+            // 
+            this.RefreshListToolStripMenuItem.Name = "RefreshListToolStripMenuItem";
+            this.RefreshListToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.RefreshListToolStripMenuItem.Text = "刷新列表";
+            this.RefreshListToolStripMenuItem.Click += new System.EventHandler(this.RefreshListToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            this.toolStripSeparator.Size = new System.Drawing.Size(227, 6);
+            // 
+            // GetResourceFilesToolStripMenuItem
+            // 
+            this.GetResourceFilesToolStripMenuItem.Name = "GetResourceFilesToolStripMenuItem";
+            this.GetResourceFilesToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.GetResourceFilesToolStripMenuItem.Text = "获取此版本资源文件";
+            // 
+            // RenameToolStripMenuItem
+            // 
+            this.RenameToolStripMenuItem.Name = "RenameToolStripMenuItem";
+            this.RenameToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.RenameToolStripMenuItem.Text = "重命名此版本";
+            // 
+            // GotoVersionFolderToolStripMenuItem
+            // 
+            this.GotoVersionFolderToolStripMenuItem.Name = "GotoVersionFolderToolStripMenuItem";
+            this.GotoVersionFolderToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.GotoVersionFolderToolStripMenuItem.Text = "进入此版本文件夹";
+            // 
+            // GotoModsFolderToolStripMenuItem
+            // 
+            this.GotoModsFolderToolStripMenuItem.Name = "GotoModsFolderToolStripMenuItem";
+            this.GotoModsFolderToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.GotoModsFolderToolStripMenuItem.Text = "进入Mods文件夹（如果有）";
             // 
             // groupBoxMemory
             // 
@@ -1536,7 +1595,6 @@
             this.textNotificAPI.TabIndex = 2;
             this.textNotificAPI.Text = "NotificAPI";
             this.toolTipMain.SetToolTip(this.textNotificAPI, "这里是来自Magicpush的推送内容。");
-            this.textNotificAPI.Click += new System.EventHandler(this.textNotificAPI_Click);
             // 
             // notifyIcon
             // 
@@ -1615,6 +1673,16 @@
             this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
             this.toolStripProgressBar.Visible = false;
             // 
+            // pageMainModpacks
+            // 
+            this.pageMainModpacks.Location = new System.Drawing.Point(4, 22);
+            this.pageMainModpacks.Name = "pageMainModpacks";
+            this.pageMainModpacks.Padding = new System.Windows.Forms.Padding(3);
+            this.pageMainModpacks.Size = new System.Drawing.Size(576, 313);
+            this.pageMainModpacks.TabIndex = 5;
+            this.pageMainModpacks.Text = "整合包";
+            this.pageMainModpacks.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1636,6 +1704,7 @@
             this.groupBoxCommonFunction.PerformLayout();
             this.groupBoxSystemInfo.ResumeLayout(false);
             this.groupBoxSystemInfo.PerformLayout();
+            this.contextMenuStripMinecraftVersions.ResumeLayout(false);
             this.groupBoxMemory.ResumeLayout(false);
             this.groupBoxMemory.PerformLayout();
             this.groupBoxLogin.ResumeLayout(false);
@@ -1811,6 +1880,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TreeView treeView2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMinecraftVersions;
+        private System.Windows.Forms.ToolStripMenuItem RefreshListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.ToolStripMenuItem GetResourceFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RenameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GotoVersionFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GotoModsFolderToolStripMenuItem;
+        private System.Windows.Forms.TabPage pageMainModpacks;
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using EMCL.Common;
+using EMCL.Launcher;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace EMCL
 {
     public partial class Main : Form
     {
-        public const string Version = "0.3.8";
+        public const string Version = "0.3.9";
         public const string Author = "Romonov";
 
         public static string GamePath = Application.StartupPath + "\\.minecraft";
@@ -32,10 +33,7 @@ namespace EMCL
         public Main()
         {
             InitializeComponent();
-
-            // Init plugin framework
-            KCriptsFramework.Initialize();
-
+            
             // Read config file
 
 
@@ -108,35 +106,8 @@ namespace EMCL
             Directory.CreateDirectory(GamePath);
             Directory.CreateDirectory(GamePath + "\\versions");
 
-            try
-            {
-                listVersions.Items.Clear();
-                string[] Versions = Directory.GetDirectories(GamePath + "\\versions");
-                foreach (string itemVerisons in Versions)
-                {
-                    if (File.Exists($@"{itemVerisons}\\{itemVerisons.Replace(GamePath + "\\versions\\", "")}.json"))
-                    {
-                        listVersions.Items.Add(itemVerisons.Replace(GamePath + "\\versions\\", ""));
-                    }
-                }
-                if(listVersions.Items.Count == 0)
-                {
-                    DialogResult = MessageBox.Show(text: "未找到任何版本，是否进入版本下载？", caption: "EMCL 无法找到游戏", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Warning);
-                    if (DialogResult == DialogResult.OK)
-                    {
-                        tabMain.SelectedIndex = 2;
-                    }
-                }
-            }
-            catch
-            {
-                DialogResult = MessageBox.Show(text: "未找到任何版本，是否进入版本下载？", caption: "EMCL 无法找到游戏", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Warning);
-                if (DialogResult == DialogResult.OK)
-                {
-                    tabMain.SelectedIndex = 2;
-                }
-            }
-                        
+            GetVersionsList(true);
+
             // Status
             textStatus.Text = "就绪";
         }
@@ -177,7 +148,7 @@ namespace EMCL
             }
             textStatus.Text = "正在准备启动游戏";
 
-            Launcher.Launch(
+            EMCL.Launcher.Launcher.Launch(
                 LoginType.Offline, listVersions.SelectedItem.ToString(), 
                 int.Parse(textBoxSetMemory.Text), 
                 textBoxUsername.Text, 
@@ -266,11 +237,6 @@ namespace EMCL
             textStatus.Text = "已完成";
         }
 
-        private void textNotificAPI_Click(object sender, EventArgs e)
-        {
-            Process.Start("");
-        }
-        
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
@@ -278,7 +244,49 @@ namespace EMCL
 
         private void SiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Process.Start("https://www.romonov.com/");
         }
+
+        private void RefreshListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GetVersionsList(false);
+        }
+
+        private void GetVersionsList(bool IsInit)
+        {
+            try
+            {
+                listVersions.Items.Clear();
+                string[] Versions = Directory.GetDirectories(GamePath + "\\versions");
+                foreach (string itemVerisons in Versions)
+                {
+                    if (File.Exists($@"{itemVerisons}\\{itemVerisons.Replace(GamePath + "\\versions\\", "")}.json"))
+                    {
+                        listVersions.Items.Add(itemVerisons.Replace(GamePath + "\\versions\\", ""));
+                    }
+                }
+                if (listVersions.Items.Count == 0 && IsInit)
+                {
+                    DialogResult = MessageBox.Show(text: "未找到任何版本，是否进入版本下载？", caption: "EMCL 无法找到游戏", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Warning);
+                    if (DialogResult == DialogResult.OK)
+                    {
+                        tabMain.SelectedIndex = 2;
+                    }
+                }
+            }
+            catch
+            {
+                if (IsInit)
+                {
+                    DialogResult = MessageBox.Show(text: "未找到任何版本，是否进入版本下载？", caption: "EMCL 无法找到游戏", buttons: MessageBoxButtons.OKCancel, icon: MessageBoxIcon.Warning);
+                    if (DialogResult == DialogResult.OK)
+                    {
+                        tabMain.SelectedIndex = 2;
+                    }
+                }
+            }
+        }
+
+
     }
 }

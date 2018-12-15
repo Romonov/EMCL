@@ -12,7 +12,7 @@ using EMCL.Common;
 using ICSharpCode.SharpZipLib.Zip;
 using Newtonsoft.Json;
 
-namespace EMCL
+namespace EMCL.Launcher
 {
     class Launcher
     {
@@ -141,7 +141,7 @@ namespace EMCL
 
         }
 
-        private static string GetCP(MainJson Json)
+        private static string GetCP(EMCL.Launcher.MainJson Json)
         {
             string cp = "";
             for (int i = 0; i < Json.libraries.Length; i++)
@@ -161,7 +161,7 @@ namespace EMCL
             return cp;
         }
 
-        private static void DecompressNatives(MainJson Json, string path, bool IsAutoDecompressLwjgl)
+        private static void DecompressNatives(EMCL.Launcher.MainJson Json, string path, bool IsAutoDecompressLwjgl)
         {
             string name = "";
             for (int i = 0; i < Json.libraries.Length; i++)
@@ -209,6 +209,9 @@ namespace EMCL
                 }
             }
             FileWorker.DeleteFiles(path, new string[] { ".sha1", ".git" }, true, true);
+            
+            // Fixme: Delete META-INF
+            //File.Delete(path + "\\META-INF");
         }
 
         private static string GetLaunchType(string Version)
